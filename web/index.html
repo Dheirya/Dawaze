@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Dwaze - The Routing Game</title>
+        <meta name="title" content="Dwaze - The Routing Game" />
+        <meta name="description" content="Master map estimation in Dawaze: Click & match driving durations on the map! Sharpen your skills & climb the leaderboard. Play now!" />
+        <meta name="keywords" content="game site, estimation skills, dawaze, maps, guessing games, driving durations, challenge, precision, strategic game, strategy, logic, luck, observation skills, route analysis, instincts, points, leaderboard, travel enthusiast, geography buff, entertainment, play now">
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://metatags.io" />
+        <meta property="og:title" content="Dwaze - The Routing Game" />
+        <meta property="og:description" content="Master map estimation in Dawaze: Click & match driving durations on the map! Sharpen your skills & climb the leaderboard. Play now!" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://metatags.io" />
+        <meta property="twitter:title" content="Dwaze - The Routing Game" />
+        <meta property="twitter:description" content="Master map estimation in Dawaze: Click & match driving durations on the map! Sharpen your skills & climb the leaderboard. Play now!" />
+        <link rel="stylesheet" type="text/css" href="static/bundled.css" crossorigin="anonymous"/>
+    </head>
+    <body>
+        <section id="preGame">
+            <div id="background"></div>
+            <section class="slide">
+                <img loading="lazy" class="slideLogo" src="/static/images/dawaze.png">
+                <br/>
+                <div class="mainContent" id="start">
+                    <div class="mainContainer">
+                        <div class="container1">
+                            <h2>Game Description</h2>
+                            <p>Discover the ultimate test of your estimation skills with Dawaze! Dawaze is an exciting new game where maps and guessing games collide. In this captivating game, you will be presented with two points on a map, along with the route connecting them and the time & distance it takes to drive between them.</p>
+                            <p>Your challenge? Click on two other points on the map that you believe have a similar driving duration between them as the original route. Can you accurately gauge the driving durations and find the perfect matches? The clock is ticking, and precision is key!</p>
+                            <p>Dawaze offers a strategic game experience that combines strategy, logic, and a dash of luck. Sharpen your observation skills, route analysis, and trust your instincts to make the right choices. With each successful match, you'll earn points over a series of ten rounds, challenging you to push your boundaries further and get on the leaderboard.</p>
+                            <p>Whether you're a travel enthusiast, geography buff, or simply love a good guessing game, Dawaze promises endless excitement and entertainment. So, can you conquer the roads and become the ultimate Dawazer? Play now and find out!</p>
+                            <br/>
+                        </div>
+                        <div class="container2">
+                            <span id="leaderboard-container" style="display:none">
+                                <h2 style="margin-bottom: -10px">Leaderboard</h2>
+                                <ol id="leaderboard" style="margin-bottom: 5px"></ol>
+                                <small><i>Info on submissions to leaderboard <a href="https://docs.google.com/document/d/1S0kBFau4GAAD6-yMFk0x6On0zqmR7v5qH28jSv20qq8/edit?usp=sharing" target="_blank">here</a></i></small>
+                                <hr style="margin-top: 5px"/>
+                                <script>const existingCookie=document.cookie.replace(/(?:(?:^|.*;\s*)rowData\s*\=\s*([^;]*).*$)|^.*$/,"$1");if(existingCookie){let e=JSON.parse(existingCookie);e.forEach(e=>{let i=document.createElement("li");i.innerHTML=e,document.getElementById("leaderboard").appendChild(i)}),document.getElementById("leaderboard-container").style.display="block"}</script>
+                            </span>
+                            <h2 style="margin-top: -10px; margin-bottom: -10px">Rules</h2>
+                            <ul>
+                                <li>The Computer Will Generate a Predetermined Route</li>
+                                <li>You Create Your Own Route With Same Driving Time</li>
+                                <li>Submit and Check How Close You Are</li>
+                            </ul>
+                            <hr/>
+                            <h2 style="margin-top: -10px; margin-bottom: -10px">Notes</h2>
+                            <ul>
+                                <li>You can press <kbd>Space</kbd> to continue anywhere on the site</li>
+                                <li>Some routes have ferries; some don't</li>
+                                <li>Please don't cheat! No one likes cheaters</li>
+                                <li>Driving times are not 100% accurate</li>
+                            </ul>
+                            <hr/>
+                            <small><b>Made by <a href="https://dheirya.is-a.dev" target="_blank">Dheirya Tyagi</a></b></small>
+                        </div>
+                    </div>
+                    <button onclick="game.slide1()">START</button>
+                </div>
+                <div class="mainContent" id="mode" style="display: none">
+                    <h2>Choose Your Difficulty:</h2>
+                    <div class="mainContainer">
+                        <div onclick="$('#mode div .active').removeClass('active');$(this).addClass('active')">
+                            <h1>Easy</h1>
+                            <p>For newer users trying to get a feel for the game</p>
+                            <p><b>Given Information:</b></p>
+                            <ul>
+                                <li>Shows Points</li>
+                                <li>Shows Route</li>
+                                <li>Shows Time</li>
+                                <li>Shows Distance</li>
+                            </ul>
+                            <hr/>
+                            <h3 style="margin-top: -5px"><i class="fa-regular fa-dice"></i> 2 Chances</h3>
+                            <h3 style="margin-top: -15px"><i class="fa-solid fa-clock"></i>  35sec/guess</h3>
+                            <h3 style="margin-top: -15px"><i class="fa-regular fa-ruler"></i> 1-250mi Route</h3>
+                            <hr/>
+                            <img loading="lazy" src="/static/images/easy.png" style="width: 90%;transform: rotate(180deg) scaleX(-1);"/>
+                        </div>
+                        <div onclick="$('#mode div .active').removeClass('active');$(this).addClass('active')">
+                            <h1>Normal</h1>
+                            <p>A more balanced difficulty for returning users</p>
+                            <p><b>Given Information:</b></p>
+                            <ul>
+                                <li>Shows Points</li>
+                                <li>Shows Route</li>
+                                <li>Shows Time</li>
+                            </ul>
+                            <hr/>
+                            <h3 style="margin-top: -5px"><i class="fa-regular fa-dice"></i> 1 Chance</h3>
+                            <h3 style="margin-top: -15px"><i class="fa-solid fa-clock"></i>  30sec/guess</h3>
+                            <h3 style="margin-top: -15px"><i class="fa-regular fa-ruler"></i> 10-500mi Route</h3>
+                            <hr/>
+                            <img loading="lazy" src="/static/images/normal.png" style="width: 90%;transform: rotate(180deg) scaleX(-1);"/>
+                        </div>
+                        <div onclick="$('#mode div .active').removeClass('active');$(this).addClass('active')">
+                            <h1>Hard</h1>
+                            <p>A little harder difficulty for pro users</p>
+                            <p><b>Given Information:</b></p>
+                            <ul>
+                                <li>Shows Points</li>
+                                <li>Shows Time</li>
+                            </ul>
+                            <hr/>
+                            <h3 style="margin-top: -5px"><i class="fa-regular fa-dice"></i> 1 Chance</h3>
+                            <h3 style="margin-top: -15px"><i class="fa-solid fa-clock"></i>  20sec/guess</h3>
+                            <h3 style="margin-top: -15px"><i class="fa-regular fa-ruler"></i> 25-1000mi Route</h3>
+                            <hr/>
+                            <img loading="lazy" src="/static/images/hard.png" style="width: 90%;transform: rotate(180deg) scaleX(-1);"/>
+                        </div>
+                        <div onclick="$('#mode div .active').removeClass('active');$(this).addClass('active')" class="active">
+                            <h1>Expert</h1>
+                            <p>Hardest difficulty for the best of the best</p>
+                            <p><b>Given Information:</b></p>
+                            <ul>
+                                <li>Shows Time</li>
+                            </ul>
+                            <hr/>
+                            <h3 style="margin-top: -5px"><i class="fa-regular fa-dice"></i> 1 Chance</h3>
+                            <h3 style="margin-top: -15px"><i class="fa-solid fa-clock"></i>  15sec/guess</h3>
+                            <h3 style="margin-top: -15px"><i class="fa-regular fa-ruler"></i> 50-1500mi Route</h3>
+                            <hr/>
+                            <img loading="lazy" src="/static/images/expert.png" style="width: 90%;transform: rotate(180deg) scaleX(-1);"/>
+                        </div>
+                    </div>
+                    <button onclick="game.slide2()">NEXT</button>
+                </div>
+                <div class="mainContent" id="countries" style="display: none">
+                    <h2>Choose Your Area:</h2>
+                    <div class="mainContainer">
+                        <div onclick="$('#countries div .active').removeClass('active');$(this).addClass('active')" class="active">
+                            <b>World</b>
+                            <br/>
+                            <img loading="lazy" src="/static/images/world.png"/>
+                        </div>
+                        <div onclick="$('#countries div .active').removeClass('active');$(this).addClass('active')">
+                            <b>Americas</b>
+                            <br/>
+                            <img loading="lazy" src="/static/images/america.png"/>
+                        </div>
+                        <div onclick="$('#countries div .active').removeClass('active');$(this).addClass('active')">
+                            <b>Europe</b>
+                            <br/>
+                            <img loading="lazy" src="/static/images/africa.png"/>
+                        </div>
+                        <div onclick="$('#countries div .active').removeClass('active');$(this).addClass('active')">
+                            <b>Asia</b>
+                            <br/>
+                            <img loading="lazy" src="/static/images/asia.png"/>
+                        </div>
+                        <div onclick="$('#countries div .active').removeClass('active');$(this).addClass('active')">
+                            <b>Africa</b>
+                            <br/>
+                            <img loading="lazy" src="/static/images/africa.png"/>
+                        </div>
+                        <div onclick="$('#countries div .active').removeClass('active');$(this).addClass('active')">
+                            <b>Oceania</b>
+                            <br/>
+                            <img loading="lazy" src="/static/images/australia.png"/>
+                        </div>
+                    </div>
+                    <button onclick="game.startGame()">PLAY</button>
+                </div>
+            </section>
+        </section>
+        <section id="gameContainer" style="position: relative;display: none">
+            <img loading="lazy" class="imgLogo" src="/static/images/dawazeIcon.png" onclick="location.reload()"/>
+            <div class="textBox">
+                <b>Given:</b>
+                <ul style="margin-top: 5px;margin-bottom: 5px">
+                    <li>Time: <span id="time">Loading...</span></li>
+                    <li id="distCont">Distance: <span id="mile">Loading...</span></li>
+                </ul>
+                <hr/>
+                <b>Objective:</b> Use Points to Make Another Route With The Same Driving Time
+                <hr/>
+                <span id="chance">1</span> <b>Chance<span id="pluralC">s</span></b> Left To Guess in <b>0:<span id="timeS">30</span>s</b>
+            </div>
+            <div id="roundBox" style="display:none">
+                <b>Round <span id="round">1</span>/10</b>
+                    <b id="totalPointsContainer">Total Points: <span id="totalPoints">0</span>/<span id="total_availablePoints">0</span> (<span id="percentPoints">100</span>%)</b>
+                <p style="margin-bottom: -12.5px; margin-top:5px">Original Route took <span id="compRoundRouteTime"></span> to drive (<span id="compRoundRouteDist"></span>mi)</p>
+                <p style="margin-bottom: -12.5px">Your Route took <span id="userRoundRouteTime"></span> to drive (<span id="userRoundRouteDist"></span>mi)</p>
+                <p style="margin-bottom: 0">You Earned <b>+<span id="curPoints">0</span> Points</b> this round</p>
+                <div id="continueMatchContainer">
+                    <a href="#" id="retryMatch" onclick="game.retryRound()">Retry ></a>
+                    <br/>
+                    <a href="#" id="continueMatch" onclick="game.nextRound()">Continue ></a>
+                </div>
+            </div>
+            <div id="checkmark" class="disabled" onclick="game.checkRound(false)"><i id="state" class="fa-regular fa-check"></i></div>
+            <div id="endGame" style="display:none">
+                <h1>Game Over</h1>
+                <div class="card">
+                    <img loading="lazy" id="imgCard" class="img-card" src="" alt="Card Image">
+                    <div class="glow"></div>
+                    <div class="buttons-container">
+                        <button onclick="game.download($('.img-card')[0].src)"><i class="fa-solid fa-download"></i></button>
+                        <button onclick="game.shareSocialRumbles()"><i class="fa-solid fa-share"></i></button>
+                        <button onclick="location.reload()"><i class="fa-solid fa-rotate"></i></button>
+                    </div>
+                </div>
+                <small><i>(Hover on Card for EndGame Options)</i></small>
+            </div>
+            <div id="map"></div>
+        </section>
+        <div class="toast"></div>
+        <script src="https://cdn.jsdelivr.net/npm/mapbox-gl@2.15.0/dist/mapbox-gl.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mapbox-gl-circle@1.6.7/dist/mapbox-gl-circle.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.0/dist/jquery.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/albert-gonzalez/easytimer.js/dist/easytimer.min.js" crossorigin="anonymous"></script>
+        <script src="static/script.js" crossorigin="anonymous"></script>
+        <script async defer src="https://kit.fontawesome.com/417d06204e.js" crossorigin="anonymous"></script>
+    </body>
+</html>
